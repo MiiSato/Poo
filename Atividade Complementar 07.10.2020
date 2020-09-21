@@ -1,0 +1,220 @@
+EXERCICIO 1
+.
+.
+.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace POO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Entre com a largura do retangulo:");
+            double largura = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Entre com a altura do retangulo:");
+            double altura = Convert.ToDouble(Console.ReadLine());
+
+            Retangulo retangulo = new Retangulo(largura, altura);
+
+            Console.WriteLine("Area:" + retangulo.GetArea());
+            Console.WriteLine("Perimetro:" + retangulo.GetPerimetro());
+            Console.WriteLine("Diagonal:" + retangulo.GetDiagonal());
+
+            Console.ReadKey();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace POO
+{
+    class Retangulo
+    {
+        public double largura;
+        public double altura;
+
+        public Retangulo (double largura, double altura)
+        {
+            this.largura = largura;
+            this.altura = altura;
+        }
+        
+        public double GetArea()
+        {
+            return largura * altura;
+        }
+
+        public double GetPerimetro()
+        {
+            return (largura * 2) + (altura * 2);
+        }
+
+        public double GetDiagonal()
+        {
+            return Math.Sqrt(largura*largura + altura*altura);
+        }
+    }
+}
+
+
+
+EXERCICIO 2 
+.
+.
+.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Exercicio2
+{
+    class Funcionario
+    {
+        public string Nome;
+        public double SalarioBruto;
+        public double Imposto;
+
+        public double GetSalarioLiquido()
+        {
+            return SalarioBruto - Imposto;
+        }
+
+        public void AumentarSalario(double porcentagem)
+        {
+            SalarioBruto = SalarioBruto + (SalarioBruto * porcentagem / 100);
+        }
+
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Exercicio2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Funcionario funcionario = new Funcionario();
+
+            Console.Write("Nome:");
+            funcionario.Nome = Console.ReadLine();
+
+            Console.Write("Salario Bruto:");
+            funcionario.SalarioBruto = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Imposto:");
+            funcionario.Imposto = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Funcionario:" + funcionario.Nome + ", " + funcionario.GetSalarioLiquido());
+
+            Console.Write("Digite a porcentagem para aumentar o salario:");
+            funcionario.AumentarSalario(Convert.ToDouble(Console.ReadLine()));
+
+            Console.WriteLine("Dados atualizados:" + funcionario.Nome + ", " + funcionario.GetSalarioLiquido());
+
+            Console.ReadKey();
+        }
+    }
+}
+
+EXERCICIO 3 
+.
+.
+.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Exercicio3
+{
+    class Aluno
+    {
+        public string Nome;
+        public double Nota1;
+        public double Nota2;
+        public double Nota3;
+
+        public double GetNotaFinal()
+        {
+            return Nota1 + Nota2 + Nota3;
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Exercicio3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Aluno aluno = new Aluno();
+
+            Console.WriteLine("Aluno:");
+            aluno.Nome = Console.ReadLine();
+
+            Console.WriteLine("Digite as notas do aluno:");
+
+            do
+            {
+                Console.WriteLine("Digite a Nota do primeiro trimeste:");
+                aluno.Nota1 = Convert.ToDouble(Console.ReadLine());
+            } while (aluno.Nota1 < 0 || aluno.Nota1 > 30);
+
+            do
+            {
+                Console.WriteLine("Digite a Nota do segundo trimeste:");
+                aluno.Nota2 = Convert.ToDouble(Console.ReadLine());
+            } while (aluno.Nota2 < 0 || aluno.Nota2 > 35);
+
+            do
+            {
+                Console.WriteLine("Digite a Nota do terceiro trimeste:");
+                aluno.Nota3 = Convert.ToDouble(Console.ReadLine());
+            } while (aluno.Nota3 < 0 || aluno.Nota3 > 35);
+
+            double notaFinal = aluno.GetNotaFinal();
+
+            Console.WriteLine("Nota final:" + notaFinal);
+
+            if(notaFinal >= 60)
+            {
+                Console.WriteLine("APROVADO");
+            }
+            else
+            {
+                Console.WriteLine("REPROVADO"); 
+                Console.WriteLine("Faltaram: " + (60 - notaFinal) + " pontos.");
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
+
