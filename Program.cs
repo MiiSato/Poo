@@ -1,42 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Pensionato
+namespace AtividadeComplementarArray
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //Quantidade de quartos utlizados
-            Console.Write("Quantas pessoas irao alugar um quarto?");
-            int pessoas = int.Parse(Console.ReadLine());
-            Quarto[] quartos = new Quarto[10];
+            int numeroPessoas = 0;
 
-            for (int i = 0; i < pessoas; i++)
+            Console.Write("Entre com o numero de pessoas: ");
+
+            numeroPessoas = int.Parse(Console.ReadLine());
+
+            float[] alturas = new float[numeroPessoas];
+
+            for(int i = 0; i < alturas.Length; i++)
             {
-                Console.WriteLine("\nHóspede #" + (i + 1) + ":");
-
-                Console.Write("Nome: ");
-                string nome = Console.ReadLine();
-
-                Console.Write("Email: ");
-                string email = Console.ReadLine();
-
-                Console.Write("Quarto: ");
-                int numeroQuarto = int.Parse(Console.ReadLine());
-
-                quartos[numeroQuarto] = new Quarto { Nome = nome, Email = email };
+                Console.Write("Entre com a altura da pessoa #" + (i + 1) + ": ");
+                alturas[i] = float.Parse(Console.ReadLine());
             }
 
-            //Quartos que estão ocupados
-            Console.WriteLine("\nOcupados:");
+            Console.Write("A media das alturas inseridas é: " + alturas.Sum() / alturas.Length);
 
-            for (int i = 0; i < quartos.Length; i++)
-            {
-                if (quartos[i] != null)
-                {
-                    Console.WriteLine((i) + ": " + quartos[i].Nome + ", " + quartos[i].Email);
-                }
-            }
+            Console.ReadKey();
+
         }
     }
 }
