@@ -1,0 +1,101 @@
+using System;
+using System.Globalization;
+
+namespace Encapsulamento
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {  
+            Console.Write("Nome do produto: ");
+            string nome = Console.ReadLine();
+
+            Console.Write("Preço do produto: em reais: ");
+            double preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            Console.Write("Digite a quantidade em estoque do produto: ");
+            int quantidade = int.Parse(Console.ReadLine());   
+            Produto p = new Produto(nome, preco, quantidade); 
+            
+            Console.WriteLine("\nDados do produto \n" + p + "\n\n");          
+            Console.Write("Digite o quantidade a ser adicionada ao estoque: ");
+
+            p.AdicionarProdutos(int.Parse(Console.ReadLine()));          
+            Console.WriteLine($"\nDados atualizados do produto \n" + p + "\n\n");
+            Console.Write("Digite o quantidade a ser removida ao estoque: ");
+
+            p.RemoverProdutos(int.Parse(Console.ReadLine()));         
+            Console.WriteLine($"\nDados atualizados do produto \n" + p + "\n\n");
+            Console.ReadKey();
+        }
+    }
+}
+
+
+
+using System;
+using System.Globalization;
+
+namespace _1_Produto__Encapsulamento_
+{
+	class Produto
+	{
+		//declara as variáveis, duas com propriedades autoimplementadas
+		private string _nome;
+		public double Preco { get; private set; }
+		public int Quantidade { get; private set; }
+
+		//Construtor padrão
+		public Produto() 
+		{
+		}
+
+		//Construtor personalizado
+		public Produto(string nome, double preco, int quantidade)
+		{
+			_nome = nome;
+			Preco = preco;
+			Quantidade = quantidade;
+		}
+
+		//Propriedade Nome customizada com condição
+		public string Nome
+		{
+			get { return _nome; }
+
+			set { if (value != null && value.Length > 1)
+				{
+					_nome = value;
+				}
+			}
+		}
+
+		//Métodos de classe
+		public double ValorTotalEstoque()
+		{
+			double total = Quantidade * Preco;
+			return total;
+		}
+
+		public void AdicionarProdutos(int qnt)
+		{
+			Quantidade += qnt;
+		}
+
+		public void RemoverProdutos(int qnt)
+		{
+			Quantidade -= qnt;
+		}
+
+		//Tostring: definir a formatação
+		public override string ToString()
+		{
+			return "Nome: " + _nome + "\n"
+				+ "Preço: R$ " + Preco.ToString("F2", CultureInfo.InvariantCulture) + "\n"
+				+ Quantidade + " unidades em estoque\n"
+				+ "Valor total: R$ " + ValorTotalEstoque().ToString("F2", CultureInfo.InvariantCulture);
+		}
+	}
+}
+
+
