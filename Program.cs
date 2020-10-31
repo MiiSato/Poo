@@ -1,24 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ToString
+namespace Pensionato
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.Write("Qual a cotacao do dolar? ");
-            double cotacaoDolar = Convert.ToDouble(Console.ReadLine());
+            //Quantidade de quartos utlizados
+            Console.Write("Quantas pessoas irao alugar um quarto?");
+            int pessoas = int.Parse(Console.ReadLine());
+            Quarto[] quartos = new Quarto[10];
 
-            Console.Write("Quantos dolares voce ira comprar? ");
-            double quantidadeDolar = Convert.ToDouble(Console.ReadLine());
+            for (int i = 0; i < pessoas; i++)
+            {
+                Console.WriteLine("\nHóspede #" + (i + 1) + ":");
 
-            Console.Write("Valor a ser pago em reais: R$ " + ConversorDeMoeda.GetPrecoFinal(cotacaoDolar, quantidadeDolar));
+                Console.Write("Nome: ");
+                string nome = Console.ReadLine();
 
-            Console.ReadKey();
+                Console.Write("Email: ");
+                string email = Console.ReadLine();
+
+                Console.Write("Quarto: ");
+                int numeroQuarto = int.Parse(Console.ReadLine());
+
+                quartos[numeroQuarto] = new Quarto { Nome = nome, Email = email };
+            }
+
+            //Quartos que estão ocupados
+            Console.WriteLine("\nOcupados:");
+
+            for (int i = 0; i < quartos.Length; i++)
+            {
+                if (quartos[i] != null)
+                {
+                    Console.WriteLine((i) + ": " + quartos[i].Nome + ", " + quartos[i].Email);
+                }
+            }
         }
     }
 }
